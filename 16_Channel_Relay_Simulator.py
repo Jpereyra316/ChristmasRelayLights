@@ -13,7 +13,7 @@ if not simulating:
     GPIO.setmode(GPIO.BCM) # GPIO Numbers instead of board numbers
 
 running = True
-sixteenChannels = False
+sixteenChannels = True
 
 lock = threading.Lock()
 
@@ -38,24 +38,24 @@ if simulating:
         if not sixteenChannels and i == 7:
             break
 else:
-    RELAY_PINS.append(14)   # 1
-    RELAY_PINS.append(15)   # 2
-    RELAY_PINS.append(18)   # 3
-    RELAY_PINS.append(23)   # 4
-    RELAY_PINS.append(24)   # 5
-    RELAY_PINS.append(25)   # 6
-    RELAY_PINS.append(8)    # 7
-    RELAY_PINS.append(7)    # 8
+    RELAY_PINS.append(7)        # 1
+    RELAY_PINS.append(26)       # 2
+    RELAY_PINS.append(8)        # 3
+    RELAY_PINS.append(19)       # 4
+    RELAY_PINS.append(25)       # 5
+    RELAY_PINS.append(13)       # 6
+    RELAY_PINS.append(24)       # 7
+    RELAY_PINS.append(6)        # 8
 
     if sixteenChannels:
-        RELAY_PINS.append(4)    # 9
-        RELAY_PINS.append(17)   # 10
-        RELAY_PINS.append(27)   # 11
-        RELAY_PINS.append(22)   # 12
-        RELAY_PINS.append(10)   # 13
-        RELAY_PINS.append(9)    # 14
-        RELAY_PINS.append(11)   # 15
-        RELAY_PINS.append(0)    # 16
+        RELAY_PINS.append(23)   # 9
+        RELAY_PINS.append(5)    # 10
+        RELAY_PINS.append(18)   # 11
+        RELAY_PINS.append(0)    # 12
+        RELAY_PINS.append(15)   # 13
+        RELAY_PINS.append(11)   # 14
+        RELAY_PINS.append(14)   # 15
+        RELAY_PINS.append(9)    # 16
 
 RELAY_STATES = []
 for pin in RELAY_PINS:
@@ -139,7 +139,7 @@ def Stimulate():
         All(True)
         sleep(defaultSleepTime)
     
-    for i in range(10):
+    for i in range(5):
         Range(1, 4, True)
         Range(5, 8, False)
         if sixteenChannels:
@@ -165,7 +165,7 @@ try:
 
 except KeyboardInterrupt:
     running = False
-    print("Terminating...")
+    print("\nTerminating...")
 
 except:
     print("Other error or exception occurred!")
